@@ -1,4 +1,4 @@
-/*
+
 #include <opencv2/core/core.hpp>
 
 #include <opencv2/highgui/highgui.hpp>
@@ -6,8 +6,6 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include <iostream>
-
-
 
 using namespace cv;
 
@@ -31,8 +29,6 @@ int main(int argc, char** argv)
 
 	image = imread(argv[1], IMREAD_COLOR); // Read the file
 
-
-
 	if (!image.data) // Check for invalid input
 
 	{
@@ -45,75 +41,81 @@ int main(int argc, char** argv)
 
 	Mat gr;
 
+	int his[256];
 
+	for (int i = 0; i < 256; i++) {
+
+		his[i] = 0;
+
+	}
 
 	cvtColor(image, gr, cv::COLOR_BGR2GRAY, 0);
-
-
 
 	int h = gr.rows;
 
 	int w = gr.cols;
 
-	int x = 0;
-
-	double y = 0.0;
+	int val = 0;
 
 	cout << "Width: " << w << endl;
 
 	cout << "Height: " << h << endl;
 
-
-
-	Mat CSt = gr.clone();
-
-
-
 	for (int i = 0; i < h; i++) {
 
 		for (int j = 0; j < w; j++) {
 
-			x = (int)gr.at<uchar>(i, j);
+			val = gr.at<uchar>(i, j);
 
-			y = 0.0;
-
-			if (x < 115) {
-
-				y = (double)(5 / 115) * (double)(x);
-
-			}
-
-			else {
-
-				if (x < 235) {
-
-					y = (double)(240 / 120) * (double)(x - 115) + 5;
-
-				}
-
-				else {
-
-					y = (double)(10 / 20) * (double)(x - 235) + 245;
-
-				}
-
-
-
-			}
-
-			CSt.at<uchar>(i, j) = (uchar)(cvRound(y));
+			his[val] = his[val] + 1;
 
 		}
 
 	}
 
+	int max = 0;
+
+	for (int i = 0; i < 256; i++) {
+
+		cout << "Gray level " << i << ": " << his[i] << endl;
+
+		if (max < his[i])
+
+			max = his[i];
+
+	}
+
+	cout << max << endl;
+
+	Mat him(301, 260, CV_8UC1, Scalar(255));
+
+	int hist[256];
+
+	double maxd = max;
+
+	for (int i = 0; i <= 255; i++) {
+
+		hist[i] = cvRound(double(his[i] / maxd) * 300);
+
+		Point pt1 = Point(i, 300 - hist[i]);
+
+		Point pt2 = Point(i, 300);
+
+		line(him, pt1, pt2, Scalar(0), 1, 8, 0);
+
+	}
+
 	namedWindow("Display window", WINDOW_AUTOSIZE); // Create a window for display.
 
-	imshow("Display window", CSt); // Show our image inside it.
+	imshow("Display window", image); // Show our image inside it.
 
 	namedWindow("Display Gray", WINDOW_AUTOSIZE); // Create a window for display.
 
 	imshow("Display Gray", gr); // Show our image inside it.
+
+	namedWindow("Display Histogram", WINDOW_AUTOSIZE); // Create a window for display.
+
+	imshow("Display Histogram", him); // Show our image inside it.
 
 	waitKey(0); // Wait for a keystroke in the window
 
@@ -121,6 +123,9 @@ int main(int argc, char** argv)
 
 	gr.release();
 
+	him.release();
+
 	return 0;
 
-}*/
+}
+
