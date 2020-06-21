@@ -1,4 +1,4 @@
-/*
+
 #include <opencv2/core/core.hpp>
 
 #include <opencv2/highgui/highgui.hpp>
@@ -77,23 +77,23 @@ int main(int argc, char** argv)
 
 			y = 0.0;
 
-			if (x < 115) {
+			if (x < 155) {
 
-				y = (double)(5 / 115) * (double)(x);
+				y = (double)(5 / 155) * (double)(x);
 
 			}
 
 			else {
 
-				if (x < 235) {
+				if (x < 212) {
 
-					y = (double)(240 / 120) * (double)(x - 115) + 5;
+					y = (double)(245 / 57) * (double)(x - 155) + 5;
 
 				}
 
 				else {
 
-					y = (double)(10 / 20) * (double)(x - 235) + 245;
+					y = (double)(5 / 43) * (double)(x - 212) + 250;
 
 				}
 
@@ -123,4 +123,4 @@ int main(int argc, char** argv)
 
 	return 0;
 
-}*/
+}
