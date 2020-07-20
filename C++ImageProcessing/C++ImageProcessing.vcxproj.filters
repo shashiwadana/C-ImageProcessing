@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="hist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hist.cpp">
+    <ClCompile Include="histogramEqualization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="contrastStretching.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

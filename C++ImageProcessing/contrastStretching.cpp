@@ -1,4 +1,4 @@
-
+/*
 #include <opencv2/core/core.hpp>
 
 #include <opencv2/highgui/highgui.hpp>
@@ -108,6 +108,8 @@ int main(int argc, char** argv)
 	}
 
 	namedWindow("Display window", WINDOW_AUTOSIZE); // Create a window for display.
+	
+    imwrite("cst.jpg", CSt);
 
 	imshow("Display window", CSt); // Show our image inside it.
 
@@ -124,3 +126,4 @@ int main(int argc, char** argv)
 	return 0;
 
 }
+*/

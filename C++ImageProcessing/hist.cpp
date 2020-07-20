@@ -97,9 +97,9 @@ int main(int argc, char** argv)
 
 		hist[i] = cvRound(double(his[i] / maxd) * 300);
 
-		Point pt1 = Point(i, 300 - hist[i]);
+		Point pt1 = Point(i, 150 - hist[i]);
 
-		Point pt2 = Point(i, 300);
+		Point pt2 = Point(i, 150);
 
 		line(him, pt1, pt2, Scalar(0), 1, 8, 0);
 
